@@ -22,8 +22,10 @@ set(SOURCES
     src/MetricsCollector.cpp
     src/protocol/JsonSerializer.cpp
     src/transport/ConsoleTransport.cpp
+    src/transport/TSPTransport.cpp
     src/logging/Logger.cpp
-)
+    src/network/TCPClient.cpp
+    )
 
 # Создаем исполняемый файл из исходников
 add_executable(nodepilot-agent ${SOURCES})
@@ -38,6 +40,7 @@ target_include_directories(nodepilot-agent
     ${PROJECT_SOURCE_DIR}/include/protocol
     ${PROJECT_SOURCE_DIR}/include/transport
     ${PROJECT_SOURCE_DIR}/include/logging
+    ${PROJECT_SOURCE_DIR}/include/network
 )
 
 # Привязываем библиотеку к цели
