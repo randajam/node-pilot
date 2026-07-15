@@ -1,6 +1,5 @@
 #include "TCPClient.hpp"
 #include <cstring>
-#include <iostream>
 #include <netinet/in.h>
 #include <stdexcept>
 #include <cerrno>
