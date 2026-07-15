@@ -10,8 +10,8 @@ public:
     TCPClient();
     ~TCPClient();
 
-    bool connect(const std::string& host, std::uint32_t port);
-    bool send(const std::string& data);
+    void connect(const std::string& host, std::uint16_t port);
+    void send(const std::string& data);
     void disconnect();
     bool isConnected() const;
 
