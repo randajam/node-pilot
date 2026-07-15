@@ -25,6 +25,7 @@ set(SOURCES
     src/transport/TCPTransport.cpp
     src/logging/Logger.cpp
     src/network/TCPClient.cpp
+    src/config/ConfigLoader.cpp
     )
 
 # Создаем исполняемый файл из исходников
@@ -41,6 +42,7 @@ target_include_directories(nodepilot-agent
     ${PROJECT_SOURCE_DIR}/include/transport
     ${PROJECT_SOURCE_DIR}/include/logging
     ${PROJECT_SOURCE_DIR}/include/network
+    ${PROJECT_SOURCE_DIR}/include/config
 )
 
 # Привязываем библиотеку к цели
