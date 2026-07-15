@@ -32,9 +32,7 @@ bool network::TCPClient::isConnected() const {
 }
 
 void network::TCPClient::connect(const std::string& host, std::uint16_t port) {
-    struct sockaddr_in server_addr{};
-
-    std::memset(&server_addr, 0, sizeof(server_addr)); // инициализируем нулями
+    struct sockaddr_in server_addr{}; // сразу инициализируем нулями
 
     server_addr.sin_family = AF_INET; // Семейство протоколов
     server_addr.sin_port = htons(port); // преобразуем порт в сетевой порядок байтов
@@ -54,5 +52,15 @@ void network::TCPClient::connect(const std::string& host, std::uint16_t port) {
 }
 
 void network::TCPClient::send(const std::string& data) {
- 
+    size_t total_sent = 0;
+    const char* buffer = data.c_str();
+
+    while (total_sent < data.length()) {
+        int delta = ::send(m_socket, buffer + total_sent, data.length() - total_sent, 0);
+        if (delta == -1) {
+            throw std::runtime_error(std::string("Send massage failed: ") + std::strerror(errno));
+        } else {
+            total_sent += delta;
+        }
+    }
 }

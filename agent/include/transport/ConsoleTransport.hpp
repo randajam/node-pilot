@@ -6,6 +6,8 @@
 namespace transport {
 
 class ConsoleTransport: public ITransport {
+    void connect() override;
+    void disconnect() override;
     void send(const std::string& msg) override;
 };
 

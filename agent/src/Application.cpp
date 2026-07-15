@@ -1,8 +1,6 @@
 #include "Application.hpp"
 #include "Agent.hpp"
 #include "Logger.hpp"
-#include "ConsoleTransport.hpp"
-#include "TCPClient.hpp"
 #include <csignal>
 
 static Application* g_app_instance = nullptr;
@@ -13,26 +11,31 @@ void Application::handleInterrupt(int /*signum*/) {
     }
 }
 
-Application::Application(): m_transport(), m_agent(m_running, m_transport){
+Application::Application(): m_transport("192.168.0.104", 8080), m_agent(m_running, m_transport){
 }
 
 int Application::run() {
     g_app_instance = this;
     
-    network::TCPClient client;
-    client.connect("192.168.0.104", 9000);
-    
     std::signal(SIGINT, Application::handleInterrupt);
     logging::log("NodePilot Agent v0.1", LogLevel::Info);
 
     try {
-        m_agent.start();
+        start();
         m_agent.loop();
-        m_agent.stop();
+        stop();
     } catch (const std::exception& err) {
         logging::log(err.what(), LogLevel::Error);
         return 1;
     }
-    client.disconnect();
     return 0;
+}
+
+void Application::start() {
+    m_transport.connect();
+    m_agent.start();
+}
+
+void Application::stop() {
+    m_agent.stop();
 }

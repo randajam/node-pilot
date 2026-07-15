@@ -22,7 +22,7 @@ set(SOURCES
     src/MetricsCollector.cpp
     src/protocol/JsonSerializer.cpp
     src/transport/ConsoleTransport.cpp
-    src/transport/TСPTransport.cpp
+    src/transport/TCPTransport.cpp
     src/logging/Logger.cpp
     src/network/TCPClient.cpp
     )
