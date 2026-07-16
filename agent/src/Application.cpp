@@ -1,6 +1,7 @@
 #include "Application.hpp"
 #include "Agent.hpp"
 #include "Logger.hpp"
+#include "Config.hpp"
 #include <csignal>
 
 static Application* g_app_instance = nullptr;
@@ -11,7 +12,11 @@ void Application::handleInterrupt(int /*signum*/) {
     }
 }
 
-Application::Application(): m_transport("192.168.0.104", 8080), m_agent(m_running, m_transport){
+Application::Application(const config::Config& config):
+    m_config(config),
+    m_transport(m_config.transport.host, m_config.transport.port),
+    m_agent(m_running, m_transport)
+{
 }
 
 int Application::run() {
