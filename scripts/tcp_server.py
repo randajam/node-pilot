@@ -39,8 +39,8 @@ def main():
     server_socket.listen()
 
     print(f"Listening on {HOST}:{PORT}")
-    print("Press Ctrl+C to stop gracefully.")
-    print("WARNING: Ctrl+Z will pause process but keep port busy until timeout.\n")
+    print("\033[32mPress Ctrl+C to stop gracefully.\033[0m")
+    print("\033[31mWARNING: Ctrl+Z will pause process but keep port busy until timeout.\033[0m\n")
 
     while True:
         try:
