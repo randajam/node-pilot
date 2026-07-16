@@ -7,21 +7,21 @@
 #include <thread>
 #include <atomic>
 
-Agent::Agent(std::atomic<bool>& running, transport::ITransport& transport):m_running(running), m_transport(transport) {}
+Agent::Agent(std::atomic<bool>& running, transport::ITransport& transport, int interval): m_running(running), m_transport(transport), m_interval(interval) {}
 
 void Agent::start() {
-    logging::log("Agent started", LogLevel::Info);
+    logging::log("Agent started", LogLevel::Info, LogCategory::General);
 }
 
 void Agent::loop() {
     while (m_running.load()) {
         update();
-        sleep();
+        sleep(m_interval);
     }
 }
 
 void Agent::stop() {
-    logging::log("Agent stopped", LogLevel::Info);
+    logging::log("Agent stopped", LogLevel::Info, LogCategory::General);
 }
 
 void Agent::update() {

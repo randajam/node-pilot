@@ -5,6 +5,9 @@
 
 namespace logging {
 
-void log(const std::string& msg, LogLevel level); 
+void log(const std::string& msg, LogLevel level, LogCategory category); 
+
+void setLevel(const LogLevel level);
+
 
 }

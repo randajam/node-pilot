@@ -3,5 +3,5 @@
 #include <string>
 
 void transport::ConsoleTransport::send(const std::string& msg) {
-    logging::log(msg, LogLevel::Transport);
+    logging::log(msg, LogLevel::Info, LogCategory::Transport);
 }

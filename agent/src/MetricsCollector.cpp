@@ -106,7 +106,7 @@ double MetricsCollector::getDiskUsage() const
     // Получаем информацию о файловой системе,
     // на которой находится корень "/"
     if (statvfs("/", &fs) != 0) {
-        throw std::runtime_error("Cannot get filesystem statistics");
+        throw std::runtime_error("Can not get filesystem statistics");
     }
 
     // Общее количество байт

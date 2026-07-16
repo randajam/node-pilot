@@ -9,8 +9,9 @@ private:
     std::atomic<bool>& m_running;
     MetricsCollector m_metrics;
     transport::ITransport& m_transport;
+    int m_interval;
 public:
-    explicit Agent(std::atomic<bool>& running, transport::ITransport& transport);
+    explicit Agent(std::atomic<bool>& running, transport::ITransport& transport, int interval);
 
     void start();
     void loop();

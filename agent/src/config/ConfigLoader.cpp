@@ -23,7 +23,6 @@ Config ConfigLoader::load(const std::string& path) {
 LogLevel log_level_from_string(const std::string& s) {
     if (s == "WARNING") return LogLevel::Warning;
     if (s == "ERROR") return LogLevel::Error;
-    if (s == "TRANSPORT") return LogLevel::Transport;
     if (s == "INFO") return LogLevel::Info;
 
     throw std::runtime_error("Unknown log level: " + s);
