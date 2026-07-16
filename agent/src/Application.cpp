@@ -14,7 +14,7 @@ void Application::handleInterrupt(int /*signum*/) {
 
 Application::Application(const config::Config& config):
     m_config(config),
-    m_transport(m_config.transport.host, m_config.transport.port),
+    m_transport(config.transport.host, config.transport.port),
     m_agent(m_running, m_transport)
 {
 }
