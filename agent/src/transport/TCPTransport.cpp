@@ -9,8 +9,13 @@ m_host(host), m_port(port)
 void transport::TCPTransport::connect() {
     logging::log("TCP client connecting to " + std::string(m_host) + ":" + std::to_string(m_port), LogLevel::Info, LogCategory::Transport);
 
-    m_client.connect(m_host, m_port);
-    
+    try {
+        m_client.connect(m_host, m_port);                                                                                      
+    } catch (const std::exception& err) {
+        logging::log("TCP recconecting to " + std::string(m_host) + ":" + std::to_string(m_port), LogLevel::Warning, LogCategory::Transport);  
+        m_client.connect(m_host, m_port);
+    }
+
     logging::log("TCP client connected", LogLevel::Info, LogCategory::Transport);
 }
 
